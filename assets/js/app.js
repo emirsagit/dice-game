@@ -2,6 +2,7 @@
 let player1Score = 0;
 let player2Score = 0;
 let player1Turn = true;
+let initialSetted = false;
 
 // Create variables to store references to the necessary DOM nodes
 const message = document.getElementById("message");
@@ -13,6 +14,10 @@ const rollBtn = document.getElementById("rollBtn");
 const resetBtn = document.getElementById("resetBtn");
 
 function writeMessageToDom(player = null) {
+  if (!initialSetted) {
+    message.textContent = "Roll Dice! (Who's First?)";
+    return;
+  }
   if (player) {
     message.textContent = `${player} WON!`;
   } else {
@@ -22,20 +27,18 @@ function writeMessageToDom(player = null) {
   }
 }
 
-function writeScore() {
+function writeScoreToDom() {
   player1Scoreboard.textContent = player1Score;
   player2Scoreboard.textContent = player2Score;
 }
 
-function writeDice(number) {
+function writeDiceToDom(number = null) {
   if (player1Turn) {
-    player1Dice.textContent = number;
-    player2Dice.textContent = "-";
+    if (number) player1Dice.textContent = number;
     player1Dice.classList.remove("active");
     player2Dice.classList.add("active");
   } else {
-    player2Dice.textContent = number;
-    player1Dice.textContent = "-";
+    if (number) player2Dice.textContent = number;
     player2Dice.classList.remove("active");
     player1Dice.classList.add("active");
   }
@@ -43,7 +46,7 @@ function writeDice(number) {
 
 function setScore(number) {
   player1Turn ? (player1Score += number) : (player2Score += number);
-  writeScore();
+  writeScoreToDom();
 }
 
 function showResetBtn() {
@@ -54,6 +57,37 @@ function showResetBtn() {
 function showRollBtn() {
   rollBtn.style.display = "inline";
   resetBtn.style.display = "none";
+}
+
+function setInitial() {
+  initialSetted = true;
+  player1Score = 0;
+  player2Score = 0;
+  writeMessageToDom();
+  writeScoreToDom();
+  if (player1Turn) {
+    player2Dice.classList.remove("active");
+    player1Dice.classList.add("active");
+  } else {
+    player1Dice.classList.remove("active");
+    player2Dice.classList.add("active");
+  }
+}
+
+function setFirstPlayer() {
+  if (player1Turn) {
+    player1Turn = false;
+    return;
+  }
+
+  if (player1Score === player2Score) {
+    message.textContent = "DRAW! Roll Dice Once More";
+    player1Turn = true;
+    return;
+  }
+
+  player1Score > player2Score ? (player1Turn = true) : (player1Turn = false);
+  setInitial();
 }
 
 function evaluateTheScore() {
@@ -72,8 +106,12 @@ function evaluateTheScore() {
 function roll() {
   const randomNumber = Math.floor(Math.random() * 6) + 1;
   setScore(randomNumber);
-  writeDice(randomNumber);
-  evaluateTheScore();
+  writeDiceToDom(randomNumber);
+  if (!initialSetted) {
+    setFirstPlayer();
+  } else {
+    evaluateTheScore();
+  }
 }
 
 function reset() {
@@ -81,12 +119,13 @@ function reset() {
   player2Score = 0;
   player1Score = 0;
   player1Turn = true;
+  initialSetted = false;
   player2Dice.textContent = "-";
   player1Dice.textContent = "-";
   player1Dice.classList.add("active");
   player2Dice.classList.remove("active");
   writeMessageToDom();
-  writeScore();
+  writeScoreToDom();
 }
 
 rollBtn.addEventListener("click", roll);
