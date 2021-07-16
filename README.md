@@ -1,6 +1,6 @@
 # A Dice Game Created By Pure JavaScript
 
-![screenshot](./app_screenshot.png)
+![screenshot](./app_screenshot1.png)
 
 ## Built With
 
