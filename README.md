@@ -18,6 +18,10 @@ To get a local copy up and running first you need to clone the repo. After that,
 - Twitter: [@emirsagit](https://twitter.com/emirsagit)
 - LinkedIn: [Emir Sağıt](https://www.linkedin.com/in/emir-sa%C4%9F%C4%B1t-633035188/)
 
+## Thanks
+
+Thanks to the [Scrimba](https://scrimba.com/). I learned front-end development main concepts. 
+
 ## 🤝 Contributing
 
 Contributions, issues, and feature requests are welcome!

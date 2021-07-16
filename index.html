@@ -5,10 +5,49 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./assets/css/app.css" />
-    <title>Carousel</title>
+    <title>Dice Game</title>
   </head>
   <body>
-    
+    <div class="container">
+      <h1 id="message">Roll Dice! (Who's First?)</h1>
+      <div class="players">
+        <div id="player1" class="player player--1">
+          <h2 class="text-black">
+            Score:
+            <span id="player1Scoreboard">0</span>
+          </h2>
+          <div class="scene">
+            <div class="cube" id="player1Dice">
+              <div class="cube__face cube__face--1"><span>1</span></div>
+              <div class="cube__face cube__face--2"><span>2</span></div>
+              <div class="cube__face cube__face--3"><span>3</span></div>
+              <div class="cube__face cube__face--4"><span>4</span></div>
+              <div class="cube__face cube__face--5"><span>5</span></div>
+              <div class="cube__face cube__face--6"><span>6</span></div>
+            </div>
+          </div>
+        </div>
+        <div id="player2" class="player player--2">
+          <h2 class="text-primary">
+            Score:
+            <span id="player2Scoreboard">0</span>
+          </h2>
+          <div class="scene">
+            <div class="cube" id="player2Dice">
+              <div class="cube__face cube__face--1"><span>1</span></div>
+              <div class="cube__face cube__face--2"><span>2</span></div>
+              <div class="cube__face cube__face--3"><span>3</span></div>
+              <div class="cube__face cube__face--4"><span>4</span></div>
+              <div class="cube__face cube__face--5"><span>5</span></div>
+              <div class="cube__face cube__face--6"><span>6</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <button id="rollBtn">Roll Dice 🎲</button>
+      <button id="resetBtn">Reset Game 🔁</button>
+    </div>
     <script src="./assets/js/app.js"></script>
   </body>
 </html>
