@@ -6,6 +6,10 @@
 
 - HTML, CSS, JavaScript
 
+## Live
+
+[A Dice Game ](https://emirsagit.github.io/dice-game/)
+
 ## Getting Started
 
 To get a local copy up and running first you need to clone the repo. After that, open index.html with your browser. 
